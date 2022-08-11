@@ -38,8 +38,10 @@ public class CategoryService {
     public ResponseEntity<?> addCategory(CategoryDTO dto) {
         Category category = new Category();
         category.setName(dto.getName());
-        Optional<Category> optionalCategory = repository.findById(dto.getCategoryId());
-        optionalCategory.ifPresent(category::setCategory);
+        if (dto.getCategoryId() != null) {
+            Optional<Category> optionalCategory = repository.findById(dto.getCategoryId());
+            optionalCategory.ifPresent(category::setCategory);
+        }
         return status(HttpStatus.CREATED).body(repository.save(category));
     }
 

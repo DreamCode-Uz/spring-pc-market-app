@@ -3,9 +3,8 @@ POST http://localhost:8080/api/category
 Content-Type: application/json
 
 {
-  "name": "Category n",
-  "active": true,
-  "categoryId": 3
+  "name": "Category 9",
+  "active": true
 }
 
 ###
