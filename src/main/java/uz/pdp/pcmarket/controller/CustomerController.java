@@ -20,7 +20,7 @@ public class CustomerController {
 
     @GetMapping
     public ResponseEntity<?> customers(@RequestParam(name = "page", defaultValue = "1") Integer page,
-                                       @RequestParam(name = "size", defaultValue = "1") Integer size) {
+                                       @RequestParam(name = "size", defaultValue = "10") Integer size) {
         return service.getAll(page, size);
     }
 
