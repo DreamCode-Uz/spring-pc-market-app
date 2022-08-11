@@ -29,6 +29,13 @@ public class Product extends AbsEntity {
     @ManyToOne
     private Measurement measurement;
 
+    public Product(Integer id, String name, boolean active, Double price, Double amount, Currency currency, Measurement measurement) {
+        super(id, name, active);
+        this.price = price;
+        this.amount = amount;
+        this.currency = currency;
+        this.measurement = measurement;
+    }
     public Product(String name, boolean active, Double price, Double amount, Currency currency, Measurement measurement) {
         super(name, active);
         this.price = price;

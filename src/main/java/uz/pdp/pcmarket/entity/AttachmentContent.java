@@ -18,6 +18,11 @@ public class AttachmentContent {
     @Lob
     private byte[] bytes;
 
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
     private Attachment attachment;
+
+    public AttachmentContent(byte[] bytes, Attachment attachment) {
+        this.bytes = bytes;
+        this.attachment = attachment;
+    }
 }

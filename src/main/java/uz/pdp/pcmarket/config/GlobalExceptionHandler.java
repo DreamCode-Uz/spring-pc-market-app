@@ -71,6 +71,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         StringBuilder builder = new StringBuilder();
+        builder.append(ex.getMethod());
         builder.append(" method is not supported for this request. Supported methods are ");
         Objects.requireNonNull(ex.getSupportedHttpMethods()).forEach(httpMethod -> builder.append(httpMethod).append(" "));
         ApiError apiError = new ApiError(METHOD_NOT_ALLOWED, ex.getLocalizedMessage(), builder.toString());
