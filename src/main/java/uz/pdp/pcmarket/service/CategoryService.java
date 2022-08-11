@@ -38,8 +38,8 @@ public class CategoryService {
     public ResponseEntity<?> addCategory(CategoryDTO dto) {
         Category category = new Category();
         category.setName(dto.getName());
-        if (dto.getCategoryId() != null && repository.existsById(dto.getCategoryId()))
-            category.setCategory(repository.getReferenceById(dto.getCategoryId()));
+        Optional<Category> optionalCategory = repository.findById(dto.getCategoryId());
+        optionalCategory.ifPresent(category::setCategory);
         return status(HttpStatus.CREATED).body(repository.save(category));
     }
 
@@ -50,6 +50,7 @@ public class CategoryService {
         if (dto.getCategoryId() != null && repository.existsById(dto.getCategoryId()))
             category.setCategory(repository.getReferenceById(dto.getCategoryId()));
         category.setActive(dto.isActive());
+        category.setName(dto.getName());
         return ok(repository.save(category));
     }
 

@@ -2,13 +2,14 @@ package uz.pdp.pcmarket.payload;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Data
 public class CategoryDTO {
-    @NotBlank(message = "name must not be null or empty")
+    @NotNull(message = "name must not be null")
     private String name;
+
     private boolean active;
-    @NotBlank(message = "categoryId must not be null or empty")
+
     private Integer categoryId;
 }

@@ -3,6 +3,7 @@ package uz.pdp.pcmarket.service;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,7 @@ import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.FAILED_DEPENDENCY;
+import static org.springframework.http.ResponseEntity.noContent;
 import static org.springframework.http.ResponseEntity.ok;
 
 @Service
@@ -39,6 +41,11 @@ public class AttachmentService {
     public AttachmentService(AttachmentRepository repository, AttachmentContentRepository contentRepository) {
         this.repository = repository;
         this.contentRepository = contentRepository;
+    }
+
+    public ResponseEntity<?> getFiles(Integer page, Integer size) {
+        PageRequest pageRequest = PageRequest.of(page > 0 ? page - 1 : 0, size > 0 ? size : 10);
+        return ok(repository.findAll(pageRequest));
     }
 
     public ResponseEntity<?> uploadFile(MultipartHttpServletRequest request, ServletUriComponentsBuilder builder) {
@@ -70,5 +77,16 @@ public class AttachmentService {
         response.setContentType(attachment.getContentType());
         FileCopyUtils.copy(optionalContent.get().getBytes(), response.getOutputStream());
         return ok().build();
+    }
+
+    public ResponseEntity<?> deleteFile(Integer id) {
+        Optional<Attachment> optionalAttachment = repository.findById(id);
+        if (!optionalAttachment.isPresent()) throw new NotFoundException("Attachment not found");
+        Optional<AttachmentContent> contentOptional = contentRepository.findByAttachment_Id(id);
+        if (contentOptional.isPresent()) {
+            contentRepository.delete(contentOptional.get());
+            repository.delete(optionalAttachment.get());
+        }
+        return noContent().build();
     }
 }

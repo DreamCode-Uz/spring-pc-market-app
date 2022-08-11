@@ -1,0 +1,13 @@
+###
+POST http://localhost:8080/api/customer
+Content-Type: application/json
+
+{}
+
+###
+GET http://localhost:8080/api/customer
+
+###
+GET http://localhost:8080/api/customer/{{id}}
+
+

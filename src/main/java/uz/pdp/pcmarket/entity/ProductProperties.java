@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,7 +21,7 @@ public class ProductProperties {
     @Column(nullable = false)
     private String color;
 
-    @NotBlank
+    @NotNull
     @Column(nullable = false)
     private Double weight;
 }

@@ -3,6 +3,7 @@ package uz.pdp.pcmarket.payload;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Data
 public class ProductDTO {
@@ -10,12 +11,12 @@ public class ProductDTO {
     @NotBlank(message = "The name must not be null or empty")
     private String name;
     private boolean active;
-    @NotBlank(message = "price must not be null or empty")
+    @NotNull(message = "price must not be null")
     private Double price;
-    @NotBlank(message = "Amount must not be null or empty")
+    @NotNull(message = "Amount must not be null")
     private Double amount;
-    @NotBlank(message = "currencyId must not be null or empty")
+    @NotNull(message = "currencyId must not be null")
     private Integer currencyId;
-    @NotBlank(message = "measurementId must not be null or empty")
+    @NotNull(message = "measurementId must not be null")
     private Integer measurementId;
 }

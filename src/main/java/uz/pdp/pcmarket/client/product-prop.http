@@ -1,0 +1,16 @@
+###
+POST http://localhost:8080/api/product-prop
+Content-Type: application/json
+
+{
+  "color": "#f50000",
+  "weight": 380
+}
+
+###
+GET http://localhost:8080/api/product-prop
+
+###
+GET http://localhost:8080/api/product-prop/1
+
+

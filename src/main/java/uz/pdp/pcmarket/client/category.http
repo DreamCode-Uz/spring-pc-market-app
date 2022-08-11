@@ -1,0 +1,31 @@
+###
+POST http://localhost:8080/api/category
+Content-Type: application/json
+
+{
+  "name": "Category n",
+  "active": true,
+  "categoryId": 3
+}
+
+###
+PUT http://localhost:8080/api/category/6
+Content-Type: application/json
+
+{
+  "name": "Category 6",
+  "active": true,
+  "categoryId": 1
+}
+
+###
+# ?page=1&size=2
+GET http://localhost:8080/api/category
+
+###
+GET http://localhost:8080/api/category/5
+
+###
+DELETE http://localhost:8080/api/category/5
+
+

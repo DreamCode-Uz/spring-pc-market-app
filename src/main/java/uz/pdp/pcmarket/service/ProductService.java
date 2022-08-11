@@ -49,7 +49,7 @@ public class ProductService {
         Optional<Measurement> optionalMeasurement = measurementRepository.findById(dto.getMeasurementId());
         if (!optionalMeasurement.isPresent()) throw new NotFoundException("Measurement not found");
         Product product = new Product(dto.getName(), dto.isActive(), dto.getPrice(), dto.getAmount(), optionalCurrency.get(), optionalMeasurement.get());
-        return status(HttpStatus.CREATED).body(product);
+        return status(HttpStatus.CREATED).body(repository.save(product));
     }
 
     public ResponseEntity<?> editProduct(Integer id, ProductDTO dto) {
@@ -60,7 +60,7 @@ public class ProductService {
         Optional<Measurement> optionalMeasurement = measurementRepository.findById(dto.getMeasurementId());
         if (!optionalMeasurement.isPresent()) throw new NotFoundException("Measurement not found");
         Product product = new Product(id, dto.getName(), dto.isActive(), dto.getPrice(), dto.getAmount(), optionalCurrency.get(), optionalMeasurement.get());
-        return ok(product);
+        return ok(repository.save(product));
     }
 
     public ResponseEntity<?> delete(Integer id) {

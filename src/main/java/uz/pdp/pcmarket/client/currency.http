@@ -1,0 +1,15 @@
+###
+POST http://localhost:8080/api/currency
+Content-Type: application/json
+
+{
+  "name": "ruble"
+}
+
+###
+GET http://localhost:8080/api/currency
+
+###
+GET http://localhost:8080/api/currency/{{id}}
+
+

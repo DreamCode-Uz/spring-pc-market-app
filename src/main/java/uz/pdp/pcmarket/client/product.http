@@ -1,0 +1,20 @@
+###
+POST http://localhost:8080/api/product
+Content-Type: application/json
+
+{
+  "name": "Samsung",
+  "active": true,
+  "price": 39999.99,
+  "amount": 3,
+  "currencyId": 3,
+  "measurementId": 3
+}
+
+###
+GET http://localhost:8080/api/product
+
+###
+GET http://localhost:8080/api/product/2
+
+
