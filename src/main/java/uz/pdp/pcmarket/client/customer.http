@@ -2,12 +2,17 @@
 POST http://localhost:8080/api/customer
 Content-Type: application/json
 
-{}
+{
+  "fullName": "John Doe",
+  "phoneNumber": "+998901234567",
+  "email": "john_doe@pdp.uz",
+  "productsId": [1, 2]
+}
 
 ###
 GET http://localhost:8080/api/customer
 
 ###
-GET http://localhost:8080/api/customer/{{id}}
+GET http://localhost:8080/api/customer/1
 
 

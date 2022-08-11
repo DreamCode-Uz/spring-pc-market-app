@@ -1,0 +1,18 @@
+###
+POST http://localhost:8080/api/payment/customer
+Content-Type: application/json
+
+{
+  "customerId": 1,
+  "productsId": [
+    1,
+    2
+  ],
+  "price": 39.99
+}
+
+###
+GET http://localhost:8080/api/payment/customer
+
+###
+GET http://localhost:8080/api/payment/customer/1

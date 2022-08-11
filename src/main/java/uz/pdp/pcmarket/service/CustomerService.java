@@ -49,7 +49,7 @@ public class CustomerService {
         Set<Product> products = checkProducts(dto.getProductsId());
         if (products.size() == 0) throw new NotFoundException("Products not found");
         return status(HttpStatus.CREATED).body(
-                new Customer(null, dto.getFullName(), dto.getPhoneNumber(), dto.getEmail(), products));
+                repository.save(new Customer(null, dto.getFullName(), dto.getPhoneNumber(), dto.getEmail(), products)));
     }
 
     public ResponseEntity<?> editCustomer(Integer id, CustomerDTO dto) {
@@ -62,7 +62,7 @@ public class CustomerService {
         Set<Product> products = checkProducts(dto.getProductsId());
         if (products.size() == 0) throw new NotFoundException("Products not found");
         return status(HttpStatus.CREATED).body(
-                new Customer(id, dto.getFullName(), dto.getPhoneNumber(), dto.getEmail(), products));
+                repository.save(new Customer(id, dto.getFullName(), dto.getPhoneNumber(), dto.getEmail(), products)));
     }
 
     public ResponseEntity<?> deleteCustomer(Integer id) {

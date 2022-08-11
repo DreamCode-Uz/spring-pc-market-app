@@ -3,6 +3,7 @@ package uz.pdp.pcmarket.payload;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Data
@@ -16,6 +17,6 @@ public class CustomerDTO {
     @NotBlank(message = "email must not be null or empty")
     private String email;
 
-    @NotBlank(message = "customersId must not be null or empty")
+    @NotNull(message = "customersId must not be null or empty")
     private Set<Integer> productsId;
 }
