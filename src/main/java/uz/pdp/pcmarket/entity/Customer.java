@@ -4,10 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,4 +15,16 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(nullable = false, name = "full_name")
+    private String fullName;
+
+    @Column(nullable = false, name = "phone_number", unique = true)
+    private String phoneNumber;
+
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @OneToMany
+    private Set<Product> products;
 }

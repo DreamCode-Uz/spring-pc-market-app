@@ -1,4 +1,4 @@
-package uz.pdp.pcmarket.entity;
+package uz.pdp.pcmarket.entity.template;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,8 +9,8 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity
-public class Attachment {
+@MappedSuperclass
+public abstract class AbsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -18,9 +18,11 @@ public class Attachment {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
-    private Long size;
+    @Column
+    private boolean active = true;
 
-    @Column(nullable = false, name = "content_type")
-    private String contentType;
+    public AbsEntity(String name, boolean active) {
+        this.name = name;
+        this.active = active;
+    }
 }
