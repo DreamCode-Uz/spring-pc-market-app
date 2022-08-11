@@ -25,6 +25,6 @@ public class Customer {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Product> products;
 }
